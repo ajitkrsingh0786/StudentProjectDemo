@@ -1,9 +1,7 @@
 package com.example.StudentDemo.service;
 
 import com.example.StudentDemo.dao.CourseRepository;
-import com.example.StudentDemo.dao.StudentRepository;
 import com.example.StudentDemo.model.Course;
-import com.example.StudentDemo.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,23 +13,22 @@ public class CourseService {
     @Autowired
     CourseRepository courseRepository;
 
-
-    public List getCourses(){
+    public List getCourses() {
         return courseRepository.findAll();
     }
 
-    public Course getCourseById(int id){
+    public Course getCourseById(int id) {
         Optional<Course> courseData = courseRepository.findById(id);
-        return  courseData.get();
+        return courseData.get();
     }
 
     public Course saveCourse(Course course) {
         return courseRepository.save(course);
     }
 
-    public Course updateCourse(int id, Course course){
+    public Course updateCourse(int id, Course course) {
         Optional<Course> courseData = courseRepository.findById(id);
-        if(courseData.isPresent()){
+        if (courseData.isPresent()) {
             Course newCourse = courseData.get();
             newCourse.setCourseName(course.getCourseName());
             newCourse.setDuration(course.getDuration());
@@ -40,9 +37,8 @@ public class CourseService {
         return null;
     }
 
-    public void deleteCourseById(int id){
+    public void deleteCourseById(int id) {
 
         courseRepository.deleteById(id);
     }
-
 }

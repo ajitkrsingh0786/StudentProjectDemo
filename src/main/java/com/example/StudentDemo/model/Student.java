@@ -5,10 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
 @Table(name = "students")
-public class Student  {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
@@ -17,11 +16,9 @@ public class Student  {
     String rollNumber;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(
-            name = "students_courses",
-            joinColumns = {@JoinColumn(name = "student_id")},
-            inverseJoinColumns = {@JoinColumn(name = "course_id")}
-    )
+    @JoinTable(name = "students_courses", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns =
+            {@JoinColumn(name = "course_id")})
+    @JsonIgnore
     List<Course> courses;
 
     public int getId() {

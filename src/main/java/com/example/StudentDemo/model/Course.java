@@ -14,11 +14,8 @@ public class Course {
     String courseName;
     String duration;
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(
-            name = "students_courses",
-            joinColumns = {@JoinColumn(name = "course_id")},
-            inverseJoinColumns = {@JoinColumn(name = "student_id")}
-    )
+    @JoinTable(name = "students_courses", joinColumns = {@JoinColumn(name = "course_id")}, inverseJoinColumns =
+            {@JoinColumn(name = "student_id")})
     @JsonIgnore
     List<Student> students;
 
